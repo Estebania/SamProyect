@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SamSystemWeb.Areas.Identity.Data;
 
 namespace SamSystemWeb.Models
 {
-    public class SamSystemWebContext : IdentityDbContext<IdentityUser>
+    public class DataContext : IdentityDbContext<AppUser>
     {
-        public SamSystemWebContext(DbContextOptions<SamSystemWebContext> options)
+        public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
         }

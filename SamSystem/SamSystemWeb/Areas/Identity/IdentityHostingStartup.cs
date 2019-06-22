@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SamSystemWeb.Areas.Identity.Data;
 using SamSystemWeb.Models;
 
 [assembly: HostingStartup(typeof(SamSystemWeb.Areas.Identity.IdentityHostingStartup))]
@@ -15,12 +16,12 @@ namespace SamSystemWeb.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<SamSystemWebContext>(options =>
+                services.AddDbContext<DataContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("SamSystemWebContextConnection")));
+                        context.Configuration.GetConnectionString("DataContextConnection")));
 
-                services.AddDefaultIdentity<IdentityUser>()
-                    .AddEntityFrameworkStores<SamSystemWebContext>();
+                services.AddDefaultIdentity<AppUser>()
+                    .AddEntityFrameworkStores<DataContext>();
             });
         }
     }
