@@ -50,9 +50,8 @@ namespace SamSystemWeb
             }
 
             app.UseHttpsRedirection();
-            app.UseAuthentication();
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
