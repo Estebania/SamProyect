@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SamSystemWeb.Areas.Identity.Data;
+using SamSystemWeb.Models;
 
-namespace SamSystemWeb.Models
+namespace SamSystemWeb.Data
 {
     public class DataContext : IdentityDbContext<AppUser>
     {
@@ -15,6 +10,11 @@ namespace SamSystemWeb.Models
             : base(options)
         {
         }
+
+        #region Properties for DB
+        public DbSet<Colaborador> Colaboradores { get; set; }
+
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

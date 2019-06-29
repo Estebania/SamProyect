@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SamSystemWeb.Areas.Identity.Data;
+using SamSystemWeb.Data;
 
 namespace SamSystemWeb.Areas.Identity.Pages.Account
 {

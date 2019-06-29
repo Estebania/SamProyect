@@ -5,14 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SamSystemWeb.Models;
 using SamSystemWeb.Data;
 
 namespace SamSystemWeb.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190622163531_IdentityModel")]
-    partial class IdentityModel
+    [Migration("20190629102519_ColaboradorModel")]
+    partial class ColaboradorModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -136,7 +135,7 @@ namespace SamSystemWeb.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SamSystemWeb.Areas.Identity.Data.AppUser", b =>
+            modelBuilder.Entity("SamSystemWeb.Data.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -187,6 +186,41 @@ namespace SamSystemWeb.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("SamSystemWeb.Models.Colaborador", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Apellido");
+
+                    b.Property<string>("Cargo");
+
+                    b.Property<string>("ColaboradorrId");
+
+                    b.Property<string>("Correo");
+
+                    b.Property<string>("Direccion");
+
+                    b.Property<short>("Edad");
+
+                    b.Property<string>("EstadoCivil");
+
+                    b.Property<string>("Nombre");
+
+                    b.Property<string>("Sexo")
+                        .IsRequired()
+                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
+
+                    b.Property<int>("Telefono");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ColaboradorrId");
+
+                    b.ToTable("Colaboradores");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -197,7 +231,7 @@ namespace SamSystemWeb.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("SamSystemWeb.Areas.Identity.Data.AppUser")
+                    b.HasOne("SamSystemWeb.Data.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -205,7 +239,7 @@ namespace SamSystemWeb.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("SamSystemWeb.Areas.Identity.Data.AppUser")
+                    b.HasOne("SamSystemWeb.Data.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -218,7 +252,7 @@ namespace SamSystemWeb.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SamSystemWeb.Areas.Identity.Data.AppUser")
+                    b.HasOne("SamSystemWeb.Data.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -226,10 +260,17 @@ namespace SamSystemWeb.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("SamSystemWeb.Areas.Identity.Data.AppUser")
+                    b.HasOne("SamSystemWeb.Data.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SamSystemWeb.Models.Colaborador", b =>
+                {
+                    b.HasOne("SamSystemWeb.Data.AppUser", "Colaboradorr")
+                        .WithMany()
+                        .HasForeignKey("ColaboradorrId");
                 });
 #pragma warning restore 612, 618
         }
