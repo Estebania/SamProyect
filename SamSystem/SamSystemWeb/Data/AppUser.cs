@@ -10,4 +10,7 @@ namespace SamSystemWeb.Data
     public class AppUser : IdentityUser
     {
     }
+
+
+
 }
