@@ -330,3 +330,4 @@ ASALocalRun/
 .mfractor/
 SamSystem/SamSystemWeb/appsettings.json
 *.json
+*.json
