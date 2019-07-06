@@ -7,7 +7,7 @@ namespace SamSystemWeb.Models
     public class Colaborador
     {
         [Required]
-        public AppUser Colaboradorr { get; set; }
+        public AppUser UsuarioID { get; set; }
 
         [Required]
         public int Id { get; set; }
@@ -22,18 +22,22 @@ namespace SamSystemWeb.Models
 
         [Required]
         [StringLength(3,MinimumLength  =2)]
-        public short Edad { get; set; }
+        public DateTime FechaNacimiento { get; set; }
 
         [Required]
         public char Sexo { get; set; }
 
         [Required]
-        [StringLength(8)]
-        public string EstadoCivil { get; set; }
+        [StringLength(13)]
+        public String Cedula { get; set; }
 
         [Required]
         [StringLength(10)]
-        public int Telefono { get; set; }
+        public string EstadoCivil { get; set; }
+
+        [Required]
+        [StringLength(12,MinimumLength  =12)]
+        public String Telefono { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -45,7 +49,7 @@ namespace SamSystemWeb.Models
 
         [Required]
         [StringLength(100)]
-        public String Cargo { get; set; }
+        public Cargo Cargo { get; set; }
 
     }
 }

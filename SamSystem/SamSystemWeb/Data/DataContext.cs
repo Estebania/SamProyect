@@ -13,7 +13,7 @@ namespace SamSystemWeb.Data
 
         #region Properties for DB
         public DbSet<Colaborador> Colaboradores { get; set; }
-
+        public DbSet<Cargo> Cargos { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder builder)
