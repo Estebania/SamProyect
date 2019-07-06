@@ -1,16 +1,19 @@
 ﻿using SamSystemWeb.Data;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SamSystemWeb.Models
 {
     public class Colaborador
     {
+        
+        
+        public int Id { get; set; }
+
         [Required]
         public AppUser UsuarioID { get; set; }
 
-        [Required]
-        public int Id { get; set; }
 
         [Required]
         [StringLength(20)]

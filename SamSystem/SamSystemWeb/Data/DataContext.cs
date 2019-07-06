@@ -12,8 +12,39 @@ namespace SamSystemWeb.Data
         }
 
         #region Properties for DB
-        public DbSet<Colaborador> Colaboradores { get; set; }
         public DbSet<Cargo> Cargos { get; set; }
+
+        public DbSet<Colaborador> Colaboradores { get; set; }
+
+        public DbSet<Nivel> Niveles { get; set; }
+
+        public DbSet<Estado> Estados { get; set; }
+
+        public DbSet<Maestro> Maestros { get; set; }
+
+        public DbSet<Seccion> Secciones { get; set; }
+
+        public DbSet<FormaDePago> FormasDePago { get; set; }//Acuerdos de pago
+
+        public DbSet<Tutor> Tutores { get; set; }
+
+        public DbSet<Proveedor> Proveedores { get; set; }
+
+        public Articulo  Articulos { get; set; }
+
+        public DbSet<Estudiante> Estudiantes { get; set; }
+
+        public DbSet<Retencion> Retenciones { get; set; }
+
+        public DbSet<DetalleRetencion> DetalleRetenciones { get; set; }
+
+        public DbSet<TipoDePago> TiposDePagos { get; set; }//Membresias o retenciones
+
+        public DbSet<Factura> Facturas { get; set; }
+
+        
+
+
         #endregion
 
         protected override void OnModelCreating(ModelBuilder builder)

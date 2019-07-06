@@ -9,9 +9,13 @@ namespace SamSystemWeb.Models
     public class DetalleRetencion
     {
         [Required]
+        public int ID { get; set; }
+        [Required]
+        [Key]
         public Retencion RetencionId { get; set; }
 
         [Required]
-        public Articulos ArticulosId { get; set; }
+         [Key]
+        public Articulo ArticulosId { get; set; }
     }
 }

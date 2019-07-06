@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SamSystemWeb.Models
 {
-    public class Articulos
+    public class Articulo
     {
         [Required]
         public short ID { get; set; }
@@ -15,8 +15,7 @@ namespace SamSystemWeb.Models
         [StringLength(20)]
         public String Nombre { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [Required]        
         public Proveedor ProveedorId { get; set; }
 
         [Required]
