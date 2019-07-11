@@ -10,8 +10,8 @@ using SamSystemWeb.Data;
 namespace SamSystemWeb.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190706040334_ModelsMigration")]
-    partial class ModelsMigration
+    [Migration("20190711224515_ActualizacionModulos")]
+    partial class ActualizacionModulos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -204,11 +204,7 @@ namespace SamSystemWeb.Migrations
 
                     b.Property<double>("Precio");
 
-                    b.Property<short>("ProveedorIdID");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("ProveedorIdID");
 
                     b.ToTable("Articulo");
                 });
@@ -237,8 +233,6 @@ namespace SamSystemWeb.Migrations
                     b.Property<string>("Apellido")
                         .IsRequired()
                         .HasMaxLength(20);
-
-                    b.Property<short>("Cargoid");
 
                     b.Property<string>("Cedula")
                         .IsRequired()
@@ -276,8 +270,6 @@ namespace SamSystemWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Cargoid");
-
                     b.HasIndex("UsuarioIDId");
 
                     b.ToTable("Colaboradores");
@@ -291,13 +283,9 @@ namespace SamSystemWeb.Migrations
 
                     b.Property<short>("ArticulosIdID");
 
-                    b.Property<int>("RetencionIdID");
-
                     b.HasKey("ID");
 
                     b.HasIndex("ArticulosIdID");
-
-                    b.HasIndex("RetencionIdID");
 
                     b.ToTable("DetalleRetenciones");
                 });
@@ -624,21 +612,8 @@ namespace SamSystemWeb.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SamSystemWeb.Models.Articulo", b =>
-                {
-                    b.HasOne("SamSystemWeb.Models.Proveedor", "ProveedorId")
-                        .WithMany()
-                        .HasForeignKey("ProveedorIdID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("SamSystemWeb.Models.Colaborador", b =>
                 {
-                    b.HasOne("SamSystemWeb.Models.Cargo", "Cargo")
-                        .WithMany()
-                        .HasForeignKey("Cargoid")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("SamSystemWeb.Data.AppUser", "UsuarioID")
                         .WithMany()
                         .HasForeignKey("UsuarioIDId")
@@ -650,11 +625,6 @@ namespace SamSystemWeb.Migrations
                     b.HasOne("SamSystemWeb.Models.Articulo", "ArticulosId")
                         .WithMany()
                         .HasForeignKey("ArticulosIdID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SamSystemWeb.Models.Retencion", "RetencionId")
-                        .WithMany()
-                        .HasForeignKey("RetencionIdID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -9,7 +9,6 @@ namespace SamSystemWeb.Models
     public class Cargo
     {
 
-        [Required]
         public short id { get; set; }
 
         [Required]

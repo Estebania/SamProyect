@@ -12,6 +12,7 @@ namespace SamSystemWeb.Data
         }
 
         #region Properties for DB
+
         public DbSet<Cargo> Cargos { get; set; }
 
         public DbSet<Colaborador> Colaboradores { get; set; }
@@ -30,7 +31,7 @@ namespace SamSystemWeb.Data
 
         public DbSet<Proveedor> Proveedores { get; set; }
 
-        public Articulo  Articulos { get; set; }
+        public Articulo Articulos { get; set; }
 
         public DbSet<Estudiante> Estudiantes { get; set; }
 
@@ -41,9 +42,6 @@ namespace SamSystemWeb.Data
         public DbSet<TipoDePago> TiposDePagos { get; set; }//Membresias o retenciones
 
         public DbSet<Factura> Facturas { get; set; }
-
-        
-
 
         #endregion
 

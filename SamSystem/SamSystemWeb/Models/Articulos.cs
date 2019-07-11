@@ -15,8 +15,8 @@ namespace SamSystemWeb.Models
         [StringLength(20)]
         public String Nombre { get; set; }
 
-        [Required]        
-        public Proveedor ProveedorId { get; set; }
+        //[Required]        
+        //public Proveedor ProveedorId { get; set; }
 
         [Required]
         public short CantidadDisponible { get; set; }

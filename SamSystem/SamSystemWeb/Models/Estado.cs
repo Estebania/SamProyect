@@ -8,7 +8,7 @@ namespace SamSystemWeb.Models
 {
     public class Estado
     {
-        [Required]       
+        [Required]
         public byte id { get; set; }
 
         [Required]

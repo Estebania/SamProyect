@@ -11,11 +11,10 @@ namespace SamSystemWeb.Models
         [Required]
         public int ID { get; set; }
         [Required]
-        [Key]
-        public Retencion RetencionId { get; set; }
+        //[Key]
+        //public Retencion RetencionId { get; set; }
 
-        [Required]
-         [Key]
+       
         public Articulo ArticulosId { get; set; }
     }
 }

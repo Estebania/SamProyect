@@ -11,7 +11,7 @@ namespace SamSystemWeb.Models
         [Required]
         public short ID { get; set; }
 
-        [Required] 
+        [Required]
         public Colaborador colaboradorid { get; set; }
 
         [Required]

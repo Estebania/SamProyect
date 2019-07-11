@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SamSystemWeb.Data;
 
 namespace SamSystemWeb.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190711225556_ActualizacionSeccion")]
+    partial class ActualizacionSeccion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -331,7 +333,7 @@ namespace SamSystemWeb.Migrations
                         .IsRequired()
                         .HasMaxLength(20);
 
-                    b.Property<short>("SeccionIdID");
+                    b.Property<short?>("SeccionIdid");
 
                     b.Property<string>("Telefono")
                         .IsRequired()
@@ -347,7 +349,7 @@ namespace SamSystemWeb.Migrations
 
                     b.HasIndex("NivelIdid");
 
-                    b.HasIndex("SeccionIdID");
+                    b.HasIndex("SeccionIdid");
 
                     b.HasIndex("TutorIdID");
 
@@ -498,7 +500,7 @@ namespace SamSystemWeb.Migrations
 
             modelBuilder.Entity("SamSystemWeb.Models.Seccion", b =>
                 {
-                    b.Property<short>("ID")
+                    b.Property<short>("id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -508,7 +510,7 @@ namespace SamSystemWeb.Migrations
 
                     b.Property<short>("MaestroidID");
 
-                    b.HasKey("ID");
+                    b.HasKey("id");
 
                     b.HasIndex("MaestroidID");
 
@@ -645,8 +647,7 @@ namespace SamSystemWeb.Migrations
 
                     b.HasOne("SamSystemWeb.Models.Seccion", "SeccionId")
                         .WithMany()
-                        .HasForeignKey("SeccionIdID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SeccionIdid");
 
                     b.HasOne("SamSystemWeb.Models.Tutor", "TutorId")
                         .WithMany()

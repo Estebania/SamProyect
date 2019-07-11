@@ -4,10 +4,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SamSystemWeb.Migrations
 {
-    public partial class ModelsMigration : Migration
+    public partial class ActualizacionModulos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Articulo",
+                columns: table => new
+                {
+                    ID = table.Column<short>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Nombre = table.Column<string>(maxLength: 20, nullable: false),
+                    CantidadDisponible = table.Column<short>(nullable: false),
+                    CantidadRequerida = table.Column<short>(nullable: false),
+                    CantidadASolicitar = table.Column<short>(nullable: false),
+                    Precio = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Articulo", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -109,6 +126,25 @@ namespace SamSystemWeb.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TiposDePagos", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DetalleRetenciones",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ArticulosIdID = table.Column<short>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DetalleRetenciones", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_DetalleRetenciones_Articulo_ArticulosIdID",
+                        column: x => x.ArticulosIdID,
+                        principalTable: "Articulo",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -232,18 +268,11 @@ namespace SamSystemWeb.Migrations
                     EstadoCivil = table.Column<string>(maxLength: 10, nullable: false),
                     Telefono = table.Column<string>(maxLength: 12, nullable: false),
                     Correo = table.Column<string>(maxLength: 100, nullable: false),
-                    Direccion = table.Column<string>(maxLength: 100, nullable: false),
-                    Cargoid = table.Column<short>(nullable: false)
+                    Direccion = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Colaboradores", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Colaboradores_Cargos_Cargoid",
-                        column: x => x.Cargoid,
-                        principalTable: "Cargos",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Colaboradores_AspNetUsers_UsuarioIDId",
                         column: x => x.UsuarioIDId,
@@ -331,30 +360,6 @@ namespace SamSystemWeb.Migrations
                         column: x => x.colaboradoridId,
                         principalTable: "Colaboradores",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Articulo",
-                columns: table => new
-                {
-                    ID = table.Column<short>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(maxLength: 20, nullable: false),
-                    ProveedorIdID = table.Column<short>(nullable: false),
-                    CantidadDisponible = table.Column<short>(nullable: false),
-                    CantidadRequerida = table.Column<short>(nullable: false),
-                    CantidadASolicitar = table.Column<short>(nullable: false),
-                    Precio = table.Column<double>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Articulo", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Articulo_Proveedores_ProveedorIdID",
-                        column: x => x.ProveedorIdID,
-                        principalTable: "Proveedores",
-                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -491,37 +496,6 @@ namespace SamSystemWeb.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "DetalleRetenciones",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    RetencionIdID = table.Column<int>(nullable: false),
-                    ArticulosIdID = table.Column<short>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetalleRetenciones", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_DetalleRetenciones_Articulo_ArticulosIdID",
-                        column: x => x.ArticulosIdID,
-                        principalTable: "Articulo",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DetalleRetenciones_Retenciones_RetencionIdID",
-                        column: x => x.RetencionIdID,
-                        principalTable: "Retenciones",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Articulo_ProveedorIdID",
-                table: "Articulo",
-                column: "ProveedorIdID");
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -562,11 +536,6 @@ namespace SamSystemWeb.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Colaboradores_Cargoid",
-                table: "Colaboradores",
-                column: "Cargoid");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Colaboradores_UsuarioIDId",
                 table: "Colaboradores",
                 column: "UsuarioIDId");
@@ -575,11 +544,6 @@ namespace SamSystemWeb.Migrations
                 name: "IX_DetalleRetenciones_ArticulosIdID",
                 table: "DetalleRetenciones",
                 column: "ArticulosIdID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DetalleRetenciones_RetencionIdID",
-                table: "DetalleRetenciones",
-                column: "RetencionIdID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Estudiantes_EstadoIdid",
@@ -675,10 +639,19 @@ namespace SamSystemWeb.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Cargos");
+
+            migrationBuilder.DropTable(
                 name: "DetalleRetenciones");
 
             migrationBuilder.DropTable(
                 name: "Facturas");
+
+            migrationBuilder.DropTable(
+                name: "Proveedores");
+
+            migrationBuilder.DropTable(
+                name: "Retenciones");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -687,13 +660,7 @@ namespace SamSystemWeb.Migrations
                 name: "Articulo");
 
             migrationBuilder.DropTable(
-                name: "Retenciones");
-
-            migrationBuilder.DropTable(
                 name: "TiposDePagos");
-
-            migrationBuilder.DropTable(
-                name: "Proveedores");
 
             migrationBuilder.DropTable(
                 name: "Estudiantes");
@@ -718,9 +685,6 @@ namespace SamSystemWeb.Migrations
 
             migrationBuilder.DropTable(
                 name: "Colaboradores");
-
-            migrationBuilder.DropTable(
-                name: "Cargos");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

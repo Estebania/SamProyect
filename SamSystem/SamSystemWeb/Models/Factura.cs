@@ -21,7 +21,7 @@ namespace SamSystemWeb.Models
         public Double Efectivo { get; set; }
 
         [Required]
-        public Double  Cambio { get; set; }
+        public Double Cambio { get; set; }
 
         [Required]
         public Estudiante EstudianteId { get; set; }

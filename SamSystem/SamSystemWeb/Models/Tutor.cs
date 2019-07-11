@@ -8,7 +8,7 @@ namespace SamSystemWeb.Models
 {
     public class Tutor
     {
-        [Required]        
+        [Required]
         public int ID { get; set; }
 
         [Required]

@@ -29,7 +29,7 @@ namespace SamSystemWeb.Models
 
         [Required]
         [StringLength(100)]
-        public  String Correo { get; set; }
+        public String Correo { get; set; }
 
         [Required]
         public Estado EstadoId { get; set; }

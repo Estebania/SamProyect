@@ -50,9 +50,9 @@ namespace SamSystemWeb.Models
         [StringLength(100)]
         public String Direccion { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        public Cargo Cargo { get; set; }
+        //[Required]
+        //[StringLength(100)]
+        //public Cargo Cargo { get; set; }
 
     }
 }

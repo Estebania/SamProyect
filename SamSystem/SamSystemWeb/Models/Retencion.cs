@@ -10,10 +10,10 @@ namespace SamSystemWeb.Models
     {
 
         [Required]
-        public int  ID { get; set; }
+        public int ID { get; set; }
 
         [Required]
-        public short  CantidadDeArticulos { get; set; }
+        public short CantidadDeArticulos { get; set; }
 
         [Required]
         public Estudiante EstudianteId { get; set; }
